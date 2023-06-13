@@ -1,6 +1,6 @@
 module github.com/chaosblade-io/chaosblade-exec-cloud
 
-go 1.17
+go 1.20
 
 require (
 	github.com/alibabacloud-go/darabonba-openapi v0.1.18
@@ -49,4 +49,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )
 
-replace github.com/chaosblade-io/chaosblade-spec-go v1.7.2 => github.com/caofujiang/chaosblade-spec-go v1.0.2
+replace github.com/chaosblade-io/chaosblade-spec-go v1.7.2 => github.com/caofujiang/chaosblade-spec-go v1.7.7
