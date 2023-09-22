@@ -18,13 +18,12 @@ package aliyun
 
 import (
 	"context"
-	"github.com/chaosblade-io/chaosblade-spec-go/channel"
-	"github.com/chaosblade-io/chaosblade-spec-go/log"
 	"os"
 	"strings"
 
-	"github.com/chaosblade-io/chaosblade-exec-cloud/exec"
 	"github.com/chaosblade-io/chaosblade-exec-cloud/exec/category"
+	"github.com/chaosblade-io/chaosblade-spec-go/channel"
+	"github.com/chaosblade-io/chaosblade-spec-go/log"
 	"github.com/chaosblade-io/chaosblade-spec-go/spec"
 	"github.com/chaosblade-io/chaosblade-spec-go/util"
 
@@ -118,6 +117,7 @@ func (be *EcsExecutor) Exec(uid string, ctx context.Context, model *spec.ExpMode
 	regionId := model.ActionFlags["regionId"]
 	operationType := model.ActionFlags["type"]
 	instances := model.ActionFlags["instances"]
+
 	if accessKeyId == "" {
 		val, ok := os.LookupEnv("ACCESS_KEY_ID")
 		if !ok {
@@ -177,24 +177,21 @@ func (be *EcsExecutor) start(ctx context.Context, operationType, accessKeyId, ac
 	default:
 		return spec.ResponseFailWithFlags(spec.ParameterInvalid, "type is not support(support start, stop, reboot)")
 	}
-	select {}
 }
 
 func (be *EcsExecutor) stop(ctx context.Context, operationType, accessKeyId, accessKeySecret, regionId string, instancesArray []string) *spec.Response {
 	switch operationType {
 	case "start":
-		return stopInstances(ctx, accessKeyId, accessKeySecret, regionId, instancesArray)
-	case "stop":
 		return startInstances(ctx, accessKeyId, accessKeySecret, regionId, instancesArray)
-	//case "reboot":
-	//	return rebootInstances(ctx, accessKeyId, accessKeySecret, regionId, instancesArray)
+	case "stop":
+		return stopInstances(ctx, accessKeyId, accessKeySecret, regionId, instancesArray)
+	case "reboot":
+		return rebootInstances(ctx, accessKeyId, accessKeySecret, regionId, instancesArray)
 	//case "delete":
 	//	return deleteInstances(ctx, accessKeyId, accessKeySecret, regionId, instancesArray)
 	default:
 		return spec.ResponseFailWithFlags(spec.ParameterInvalid, "type is not support(support start, stop, reboot)")
 	}
-	ctx = context.WithValue(ctx, "bin", EcsBin)
-	return exec.Destroy(ctx, be.channel, "aliyun es")
 }
 
 func (be *EcsExecutor) SetChannel(channel spec.Channel) {
