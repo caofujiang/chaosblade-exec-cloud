@@ -4,11 +4,8 @@ go 1.20
 
 require (
 	github.com/alibabacloud-go/darabonba-openapi v0.1.18
-	github.com/alibabacloud-go/darabonba-openapi/v2 v2.0.4
-	github.com/alibabacloud-go/ecs-20140526/v3 v3.0.10
 	github.com/alibabacloud-go/ecs-20140526/v4 v4.24.17
 	github.com/alibabacloud-go/tea v1.1.19
-	github.com/alibabacloud-go/tea-utils/v2 v2.0.4
 	github.com/aws/aws-sdk-go-v2 v1.18.1
 	github.com/aws/aws-sdk-go-v2/config v1.18.27
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.26
@@ -66,4 +63,4 @@ require (
 	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )
 
-replace github.com/chaosblade-io/chaosblade-spec-go v1.7.3 => github.com/caofujiang/chaosblade-spec-go v1.7.7
+replace github.com/chaosblade-io/chaosblade-spec-go v1.7.3 => github.com/caofujiang/chaosblade-spec-go v1.7.8
